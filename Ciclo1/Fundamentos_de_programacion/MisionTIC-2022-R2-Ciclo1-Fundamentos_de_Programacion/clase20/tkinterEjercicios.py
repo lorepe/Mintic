@@ -81,4 +81,9 @@ menu_ayuda=Menu(barra_menu,tearoff=0)#que va a salir primero
 menu_ayuda.add_command(label='Acerca de ')
 barra_menu.add_cascade(label='Ayuda',menu=menu_ayuda)
 
+
+#Documentacion tkinter
+#https://docs.python.org/3/library/tk.html
+
+
 ventana1.mainloop()
