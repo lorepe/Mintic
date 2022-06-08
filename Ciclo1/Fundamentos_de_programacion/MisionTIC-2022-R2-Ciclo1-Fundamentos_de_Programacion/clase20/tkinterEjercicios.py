@@ -1,6 +1,8 @@
 import tkinter as tk
 from tkinter import Toplevel, ttk
 
+from pyrsistent import v
+
 ventana1=tk.Tk()
 ventana1.geometry('800x600')
 ventana1.title('Principal')
@@ -52,5 +54,31 @@ opc2=tk.IntVar()
 radio_bt1=tk.Radiobutton(ventana1,text='green',variable=opc2,value=1,command=fun_radio_b1)
 radio_bt1.grid(column=1,row=5)
 
+
+#cuadro de texto
+
+from tkinter import scrolledtext
+ancho=30
+alto=3
+caja=scrolledtext.ScrolledText(ventana1, width=ancho,height=alto,wrap=tk.WORD)
+caja.grid(column=0,columnspan=7)
+
+#barra de menu
+from tkinter import Menu
+
+barra_menu=Menu(ventana1)
+ventana1.config(menu=barra_menu)
+
+opciones_menu=Menu(barra_menu)
+opciones_menu.add_command(label="Nuevo")
+opciones_menu.add_command(label="Guardar")
+opciones_menu.add_separator()
+opciones_menu.add_command(label="Abrir")
+opciones_menu.add_command(label="Salir")
+barra_menu.add_cascade(label="Archivo",menu=opciones_menu)
+#agregar otra opcion
+menu_ayuda=Menu(barra_menu,tearoff=0)#que va a salir primero
+menu_ayuda.add_command(label='Acerca de ')
+barra_menu.add_cascade(label='Ayuda',menu=menu_ayuda)
 
 ventana1.mainloop()
