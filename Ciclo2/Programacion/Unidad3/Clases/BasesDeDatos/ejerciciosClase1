@@ -1,0 +1,96 @@
+SELECT *
+  FROM departments;-- seleccion de columnas
+
+SELECT department_id,
+       location_id
+  FROM departments;-- agregar 300 a todos los empleados
+
+SELECT first_name,
+       last_name,
+       salary,
+       salary + 300
+  FROM employees;
+
+SELECT last_name,
+       salary,
+       12 * (salary + 300) 
+  FROM employees;-- alias
+
+SELECT first_name AS Nombres,
+       last_name Apellidos
+  FROM employees;-- operador de concatenacion
+
+SELECT first_name || ', ' || last_name AS Empleados
+  FROM employees;-- seleccionar como un conjunto
+
+SELECT DISTINCT department_id
+  FROM employees;-- --EJERCICIOS BASICOS ---
+-- 1---
+SELECT employee_id,
+       last_name,
+       job_id,
+       hire_date AS StartDate
+  FROM employees;-- -2--
+
+SELECT DISTINCT job_id
+  FROM employees;-- -EJERCICIOS AVANZADOS--
+-- 1--
+SELECT employee_id AS [Emp #],
+       first_name || ' ' || last_name Employee,
+       job_id AS Job,
+       hire_date AS [Hire Date]
+  FROM employees,
+       jobs;-- -2---
+
+SELECT last_name || ', ' || employee_id AS [Employee and Title]
+  FROM employees;-- 3--
+
+SELECT last_name || ', ' || job_id AS [Employee and Title]
+  FROM employees;
+
+SELECT employee_id || ', ' 
+    || first_name || ', ' 
+    || last_name || ', ' 
+    || email || ', ' 
+    || phone_number || ', ' 
+    || hire_date || ', ' 
+    || job_id || ', ' 
+    || salary || ', ' 
+    || manager_id || ', ' 
+    || department_id AS THE_OUTPUT
+  FROM employees;
+
+select * from employees;
+--empleados que pertenecen al departamento de marketing -- departament_id =2 
+SELECT employee_id,
+       first_name,
+       last_name,
+       department_id
+  FROM employees
+ WHERE department_id = 2;
+ 
+
+--empleados que se llaman jhon 
+SELECT employee_id,
+       first_name,
+       last_name, 
+       department_id,
+       job_id
+  FROM employees
+ WHERE first_name = 'John';
+
+--Por fechas 
+SELECT first_name, 
+    last_name,
+    hire_date
+    FROM employees
+    WHERE hire_date = '1990-01-03';
+--Empleados que ganen mas de 10.000 dolares al mes
+
+SELECT employee_id,
+       first_name,
+       last_name,
+       salary
+  FROM employees
+ WHERE salary >= 10000;
+

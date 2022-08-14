@@ -1,0 +1,43 @@
+CREATE TABLE Customers (
+    personID  INT,
+    lastName  VARCHAR (255),
+    firstName VARCHAR (255),
+    address   VARCHAR (255),
+    city      VARCHAR (255) 
+);
+
+INSERT INTO Customers (
+                          personID,
+                          lastName,
+                          firstName,
+                          address,
+                          city
+                      )
+                      VALUES (
+                          1,
+                          'Perez',
+                          'Lorena',
+                          'calle',
+                          'bogota'
+                      );
+
+ALTER TABLE Customers ADD email VARCHAR (255);
+
+DROP TABLE Customers;
+
+INSERT INTO Customers (
+                          personID,
+                          lastName,
+                          firstName,
+                          address,
+                          city,
+                          email
+                      )
+                      VALUES (
+                          1,
+                          'Perez',
+                          'Lorena',
+                          'calle123',
+                          'bogota',
+                          'lore@email.com'
+                      );

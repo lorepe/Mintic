@@ -1,0 +1,328 @@
+--los empleados que tengan un salario entre 5000 y 10000
+SELECT last_name, salary FROM employees WHERE salary BETWEEN 5000 AND 10000;
+
+--los empleados que ganen un salario >=20.000
+SELECT first_name, last_name, salary FROM employees WHERE salary >=20000;
+
+--los empleados con manager_id 100, 102, 108
+SELECT employee_id,
+       first_name,
+       last_name,
+       manager_id,
+       phone_number
+  FROM employees
+ WHERE manager_id IN (100, 102, 108);
+ --LIKE --- Mostrar caracteres
+ --Mostrar todos los nombres que inicien con la letra K
+ SELECT first_name,
+       last_name,
+       email
+  FROM employees
+ WHERE first_name LIKE 'K%';
+
+--Por caracter... ubicación del caracter
+--Mostrar los apellidos que su tercera letra sea la o
+-- _ representa un caracter.... % varios caracteres...
+SELECT first_name,
+       last_name,
+       phone_number
+  FROM employees
+ WHERE last_name LIKE '_o%';
+--Quiero saber si, ese registro es null...
+SELECT first_name,
+       last_name,
+       phone_number
+  FROM employees
+ WHERE phone_numb
+
+
+SELECT first_name,
+       last_name,
+       email
+  FROM employees
+ WHERE first_name LIKE 'K%';
+ 
+-- Por caracter.. ubicacion del caracter
+-- Mostrar los apellidos que su tercera letra sea la o-- _ representa un caracter ... % varios caracteres
+SELECT first_name,
+       last_name,
+       phone_number
+  FROM employees
+ WHERE last_name LIKE '_o%';
+ 
+-- Quiero saber si, ese registro es null..
+
+SELECT first_name,
+       last_name,
+       phone_number
+  FROM employees
+ WHERE phone_number IS NULL;
+ 
+-- saber cuales no son null
+
+SELECT first_name,
+       last_name,
+       phone_number
+  FROM employees
+ WHERE phone_number IS NOT NULL;
+
+--Mostrar el nombre , apellido y sueldo de los empleados  que tengan
+-- un salario > 5000 y que sean programadores
+
+select first_name, last_name, salary, job_id from employees where salary >5000 and job_id = 9;
+
+-- empleados que tengan un salario >= 10000 o que trabajen en el departamento ventas
+select first_name, last_name, department_id, salary from employees where salary >=10000 or department_id=8;
+
+---- muestre los empleados, excepto los que trabajan en programacion, manejador de
+
+select employee_id, first_name, last_name, job_id from employees where job_id not in (9,15,4);
+
+
+-- precedencia
+-- mostrar el nombre, apellido, job_id, salario de los empleados que tengan 
+--como labor la presedencia o contador publico y cuyo salario sea >15000
+
+SELECT first_name,
+       last_name,
+       job_id,
+       salary
+  FROM employees
+ WHERE (job_id = 4 OR 
+        job_id = 1) AND 
+       salary > 15000;
+       
+
+select first_name, last_name, job_id, salary from employees where job_id in(4,1) and salary >15000;
+
+
+-- mostrar los datos basicos de los empleados desde el mayor a menor salario
+
+SELECT employee_id,
+       first_name,
+       last_name,
+       phone_number
+  FROM employees
+ ORDER BY salary DESC;
+ 
+-- por numero de columna
+-- 6 -- fecha
+
+SELECT employee_id,
+       first_name,
+       last_name,
+       email,
+       phone_number,
+       hire_date,
+       job_id,
+       salary
+  FROM employees
+ ORDER BY 6;
+
+
+
+--ejercicios básicos 
+--1
+
+select last_name, salary from employees where salary >12000;
+
+
+--2
+
+select last_name, department_id from employees where employee_id = 176;
+
+
+---3
+select last_name, salary from employees where salary not BETWEEN 5000 and 1200;
+
+-- ejercicio 10
+
+select last_name from employees where first_name like '__a%';
+
+--11
+
+select last_name from employees where last_name like '%a%' and last_name like '%e%' ;
+
+--12
+select last_name, job_id, salary from employees where job_id in (16,18) and salary not in (2500,3500,7000);
+
+
+-----------------------------------------
+
+
+select last_name, job_id, salary, mod(salary,5000)"Modulo"
+from employees
+where job_id = 16;
+
+--Mostrar el id del empleado, el apellido, el departamento id, mientras que last_name = Higgins
+SELECT employee_id,
+       last_name,
+       department_id
+  FROM employees
+ WHERE lower(last_name) = 'higgins';
+
+--la fecha actual
+select date ('now');
+
+-- calcular el untimo dia del mes actual
+
+select date('now', 'start of month', '+1 month', '-1 day');
+
+select datetime(1092941466,'unixepoch');
+
+--calcular la fecha del dia martes del mes actual 
+
+select date('now','start of year','+9 months','weekday 2');
+
+--muestre el apellido y el salario del empleado, mkietrass el salario sea >5000
+--muestre un mensaje 'El salario es mayor a 5000' de lo contrario, mensaje 'no cumple'
+
+SELECT last_name,
+       salary,
+       CASE WHEN salary > 5000 THEN 'El salario es mayor que 5000' ELSE 'no cumple la condicion' END AS [Respuesta automatica]
+  FROM employees;
+--Muestre el apellido , luego el apellido en mayuscula y luego, al apellido concatenado 
+--pago, a los empleados del departamento de ventas...
+
+
+SELECT last_name,
+       upper(last_name) "Apellidos en mayuscula",
+       last_name || 'Pago' "pagaron"
+  FROM employees
+ WHERE department_id = 8;
+
+
+---ejercicio 1
+
+SELECT employee_id,
+       last_name,
+       salary,
+       round(salary * 0.155 + salary, 0) "New salary"
+  FROM employees;
+  
+
+--- ejercicio 2
+
+SELECT employee_id,
+       last_name,
+       salary,
+       round(salary * 0.155 + salary, 0) AS [new salary],
+       round(salary * 0.155 + salary, 0) - salary Increase
+  FROM employees;
+
+---ejercico 3 
+SELECT employee_id,
+       first_name,
+       upper(substr(last_name, 1, 1) ) || lower(substr(last_name, 2) ) "Name",
+       length(last_name) 
+  FROM employees
+ WHERE first_name LIKE 'J%' OR 
+       first_name LIKE 'A%' OR 
+       first_name LIKE 'M%'
+ ORDER BY last_name;
+
+
+----- ejercicio 12
+
+SELECT job_id,
+       job_title,
+       CASE job_id WHEN 5 THEN 'A' WHEN 15 THEN 'B' WHEN 9 THEN 'C' WHEN 16 THEN 'D' WHEN 18 THEN 'E' ELSE '0' END GRADE
+  FROM employees
+       NATURAL JOIN
+       jobs;-- natural es como decir con que columna se va a comparar, como se llama igual en ambas tablas se usa
+
+--hallar el promedio, el salario mas bajo,
+-- y mas alto, y la sumatoria de todos los empleados que sean programadores
+
+SELECT avg(salary) AS salario_maximo,
+       min(salary) AS salario_minimo,
+       sum(salary) AS sumatoria
+  FROM employees
+ WHERE job_id = 9;
+
+--funciones de filas con campos numericos lo podemos hacer con campos tipo fecha 
+--la fecha mas reciente y la mas antigua
+
+SELECT max(hire_date) , min(hire_date) from employees;
+
+----funciones de fials multiples --- count
+---- Devuelve el número de filas que coincidan con el criterio dado.
+--cuantos empleados hay en el departamento de finanzas
+
+select count(*) from employees where department_id = 10;
+--excluya los repetidos .. cuantos id de departamento hay 
+SELECT count(DISTINCT department_id) 
+  FROM employees;-- para que no tome los repetidos el distinct
+
+
+--muestre el id de departamento y el promedio del salario, 
+-- agrupando por el id del departamento
+
+select department_id, avg(salary)
+from employees
+group by department_id;
+
+
+select department_id, job_id, avg(salary)
+from employees
+group by department_id,job_id
+order by job_id;
+-- agrupar y hacer una condicion
+SELECT department_id,
+       avg(salary) 
+  FROM employees
+ WHERE avg(salary) > 5000
+ GROUP BY department_id;
+
+
+--hacer una condicion sobre un grupo --- having -- condicion grupal 
+--fucion de multiples filas
+SELECT department_id,
+       avg(salary) promedio
+  FROM employees
+ GROUP BY department_id
+HAVING promedio > 8000;
+
+-- ejercios sql avanzado
+-- 1 
+select round(max(salary),0) as Maximum,
+round(min(salary),0) as Minimum,
+round(sum(salary),0) as Sum,
+round(avg(salary),0) as Average from employees;
+
+
+--2
+
+
+select job_id,round(max(salary),0) as Maximum,
+round(min(salary),0) as Minimum,
+round(sum(salary),0) as Sum,
+round(avg(salary),0) as Average from employees
+ group by job_id;
+ 
+----3
+
+select job_id, count(*) 
+FROM employees 
+GROUP by job_id;
+---6
+SELECT manager_id,
+       min(salary) sm
+  FROM employees
+ WHERE manager_id IS NOT NULL
+ GROUP BY manager_id
+HAVING sm > 6000
+ ORDER BY sm DESC;
+
+
+
+
+
+
+
+
+
+
+
+
+
