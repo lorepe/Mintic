@@ -35,9 +35,15 @@ while mainloop:
 
     #Solicitar a la interfaz la selección de una opción
     opcion = ic.formularioMenuAppCRUD()
+<<<<<<< HEAD
 
     #Si Create fue seleccionado por el usuario en el menú
     if opcion == 1:
+=======
+    
+    #Si Create fue seleccionado por el usuario en el menú
+    if opcion == 1:        
+>>>>>>> 94002f12681c08e3d9eb694ba931361f7672b06f
 
         #Solicitar a la interfaz mostrar el mensaje
         ic.mensaje("->Adicionando Tarea")
